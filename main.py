@@ -1,9 +1,13 @@
+
+
 from mrjob.job import MRJob
 from mrjob.job import MRStep
 class Word_Count(MRJob):
     def mapper(self, _, line):
         for word in line.split():
             word.lower()
+            f=filter(str.isalpha,word)
+            word = "".join(f)
             yield word, 1
 
     def reducer(self, key, values):
@@ -24,4 +28,4 @@ if __name__ == "__main__":
 
 
 
-    # python main.py Computerprogramming.txt
+    # python main.py Distributed_computing.txt Computer_programming.txt
